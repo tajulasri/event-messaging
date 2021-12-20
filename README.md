@@ -1,9 +1,5 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/smsniaga/event-stream-laravel.svg?style=flat-square)](https://packagist.org/packages/smsniaga/event-stream-laravel)
-[![Total Downloads](https://img.shields.io/packagist/dt/smsniaga/event-stream-laravel.svg?style=flat-square)](https://packagist.org/packages/smsniaga/event-stream-laravel)
-![GitHub Actions](https://github.com/smsniaga/event-stream-laravel/actions/workflows/main.yml/badge.svg)
-
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
 
 ## Installation
@@ -11,7 +7,7 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require smsniaga/event-stream-laravel
+composer require espresso-byte/event-messaging
 ```
 
 ## Usage
@@ -40,7 +36,7 @@ If you discover any security related issues, please email mtajulasri@gmail.com i
 
 ## Credits
 
--   [Tajul Asri](https://github.com/smsniaga)
+-   [Tajul Asri](https://github.com/tajulasri)
 -   [All Contributors](../../contributors)
 
 ## License
