@@ -18,7 +18,7 @@ class EventMessagingServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->mergeConfigFrom(
-                __DIR__.'/../config/config.php', 'event-stream-laravel',
+                __DIR__.'/../config/config.php', 'event-messaging',
             );
 
             $this->commands([
@@ -37,13 +37,7 @@ class EventMessagingServiceProvider extends ServiceProvider
         $this->app->bind(LoopInterface::class, static function () {
             return Loop::get();
         });
-
-        $this->app->bind(EventMessaging::class, function ($app) {
-            return new EventMessaging(
-                app(RedisManager::class),
-                app(LoggerInterface::class)
-            );
-        });
+        
     }
 
     public function provides()

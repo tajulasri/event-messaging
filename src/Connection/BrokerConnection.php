@@ -3,6 +3,7 @@
 namespace EspressoByte\EventMessaging\Connection;
 
 use EspressoByte\EventMessaging\Listeners\DefaultListener;
+use EspressoByte\EventMessaging\Logger\EventMessagingLogger;
 use EspressoByte\LoopUtil\FileLogger\Monolog\StreamHandler;
 use Monolog\Logger;
 use React\EventLoop\LoopInterface;
@@ -55,13 +56,15 @@ class BrokerConnection
 
     public function connect()
     {
-        $logger = new Logger('event-stream-laravel');
-        $logger->pushHandler(new StreamHandler(new WritableResourceStream(STDOUT, $this->loopInterface)));
+        $logger = new EventMessagingLogger($this->loopInterface);
+        $defaultListener = new DefaultListener($this->topic, $logger->logger());
 
-        $defaultListener = new DefaultListener($this->topic, $logger);
+        $client = new \Laravie\Streaming\Client([
 
-        $client = new \Laravie\Streaming\Client(
-            ['host' => '127.0.0.1', 'port' => 6379], $this->loopInterface
+            'host' => config('event-messaging.redis.host'),
+            'port' => config('event-messaging.redis.port'),
+
+        ], $this->loopInterface
         );
 
         $client->connect($defaultListener);

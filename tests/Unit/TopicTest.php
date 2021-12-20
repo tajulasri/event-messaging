@@ -14,7 +14,7 @@ class TopicTest extends TestCase
         $this->assertInstanceOf(Topic::class, $topic);
         $this->assertEquals('test', $topic->group());
         $this->assertEquals('order.created', $topic->event());
-        $this->assertIsString(strval($topic));
-        $this->assertEquals(strval($topic), $topic->event());
+        $this->assertIsString(strval('event.'.$topic));
+        $this->assertEquals(strval($topic), 'event.'.$topic->event());
     }
 }

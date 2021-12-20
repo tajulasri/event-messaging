@@ -13,7 +13,7 @@ class StartBrokerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'smsniaga:broker:serve {topic}';
+    protected $signature = 'eventmessaging:broker:serve {topic}';
 
     /**
      * The console command description.

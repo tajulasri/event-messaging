@@ -5,6 +5,7 @@ namespace EspressoByte\EventMessaging;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Psr\Log\LoggerInterface;
+use EspressoByte\EventMessaging\Exception\EventHandlerErrorException;
 
 class EventManager
 {
@@ -19,6 +20,11 @@ class EventManager
      * @var array
      */
     protected $response = [];
+    
+    /**
+     * @var array
+     */
+    protected $errors = [];
 
     /**
      * @var mixed
@@ -51,7 +57,16 @@ class EventManager
     {
         //dispatch to subscribed events
         $this->getEventHandlers()->each(function ($instance) {
-            $this->response[$instance] = app($instance)->onReceived($this->eventPayload->payload, $this->logger);
+            try {
+                
+                $this->response[$instance] = app($instance)
+                    ->onReceived($this->eventPayload->payload, $this->logger);
+            }
+            catch(EventHandlerErrorException $e) {
+                
+                $this->errors[$instance] = app($instance)
+                    ->onError($this->eventPayload->payload, $this->logger);
+            }
         });
 
         return $this->response;
@@ -60,8 +75,18 @@ class EventManager
     protected function getEventHandlers(): Collection
     {
         $topic = new Topic($this->eventPayload->channel);
-        $eventHandlers = config('event-stream-laravel.events');
+        $eventHandlers = config('event-messaging.events');
 
         return array_key_exists($topic->event(), $eventHandlers) ? new Collection($eventHandlers[$topic->event()]) : new Collection();
+    }
+    
+    public function responses()
+    {
+        return $this->response;
+    }
+    
+    public function errors()
+    {
+        return $this->errors;
     }
 }

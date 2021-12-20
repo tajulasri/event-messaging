@@ -11,19 +11,25 @@ class RedisBroadcaster implements Broadcaster
      * @var mixed
      */
     protected $connection;
+
     /**
      * @var mixed
      */
     protected $redisManager;
+
     /**
      * @var mixed
      */
     protected $channel;
+
     /**
      * @var mixed
      */
     protected $message;
 
+    /**
+     * @param RedisManager $redisManager
+     */
     public function __construct(RedisManager $redisManager)
     {
         $this->redisManager = $redisManager;

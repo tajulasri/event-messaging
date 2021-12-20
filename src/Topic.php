@@ -34,6 +34,6 @@ class Topic
      */
     public function __toString()
     {
-        return $this->event();
+        return config('event-messaging.subscribed_topic').$this->event();
     }
 }

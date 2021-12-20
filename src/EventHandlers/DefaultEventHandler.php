@@ -3,17 +3,23 @@
 namespace EspressoByte\EventMessaging\EventHandlers;
 
 use EspressoByte\EventMessaging\Contracts\EventInterface;
+use EspressoByte\EventMessaging\Exception\EventHandlerErrorException;
 
 class DefaultEventHandler extends EventHandler implements EventInterface
 {
     /**
      * @return mixed
+     * @throws EventHandlerErrorException
      */
     public function onReceived($message, $logger)
     {
-        $logger->info('testing');
-
-        return 1;
+       $response = true;
+       
+       if(!$response) {
+           throw new EventHandlerErrorException();
+       }
+       
+       return 1;
     }
 
     /**

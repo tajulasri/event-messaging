@@ -15,8 +15,64 @@ composer require espresso-byte/event-messaging
 ## Usage
 
 ```php
-// Usage description here
+
+    //call artisan command for broker be able to start
+    //this codebase is using wrapped around async redis provided by laravie/streaming package and event loop by React PHP
+    php artisan eventmessaging:broker:serve event.*
+
 ```
+
+```php
+//publish message
+
+    EspressoByte\EventMessaging\EventMessaging::message(['user_id' => 1,'ordered_items' => []])
+        ->publish('orders.created');
+
+```
+
+## Usage
+
+```php
+//create handlers to handle events
+
+use EspressoByte\EventMessaging\Contracts\EventInterface;
+
+class OrderCreatedHandler implements EventInterface
+{
+     /**
+     * @return mixed
+     */
+    public function onReceived($message, $logger)
+    {
+        $logger->info('orders created.');
+        
+        //just return any response
+        return 'orders.created';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function onError($message, $logger)
+    {   
+        //handle the exception during handlers processing
+        return 'error on event handler => '.\get_class($this);
+    }
+}
+
+```
+
+```php
+
+//event handlers registry -> config/event-messaging.php
+
+'events' => [
+        'orders.created' => [
+            OrderCreatedHandler::class,
+        ]
+
+```
+
 
 ### Testing
 

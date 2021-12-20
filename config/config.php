@@ -5,11 +5,13 @@
  */
 return [
 
+    'subscribed_topic'  => 'event.',
+
     'redis'  => [
         'host' => '127.0.0.1',
         'port' => 6789,
     ],
-    //map fired event to each handlers
+
     'events' => [
         'orders.created' => [
             \EspressoByte\EventMessaging\EventHandlers\DefaultEventHandler::class,

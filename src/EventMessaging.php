@@ -42,7 +42,7 @@ class EventMessaging
      *
      * @return mixed
      */
-    public function payload($message)
+    public function message($message)
     {
         $this->message = $message;
 
@@ -54,10 +54,10 @@ class EventMessaging
      */
     public function publish($channel)
     {
-        $this->connection->publish($channel, $this->getPayload());
+        $this->connection->publish($channel, $this->getMessage());
     }
 
-    public function getPayload()
+    public function getMessage()
     {
         return json_encode([
             'data'     => $this->message,

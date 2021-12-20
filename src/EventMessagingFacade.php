@@ -16,6 +16,6 @@ class EventMessagingFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'smsniaga.eventstream';
+        return 'espressobyte.eventmessaging';
     }
 }
