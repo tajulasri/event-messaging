@@ -3,10 +3,10 @@
 namespace EspressoByte\EventMessaging\Connection;
 
 use EspressoByte\EventMessaging\Listeners\DefaultListener;
+use EspressoByte\LoopUtil\FileLogger\Monolog\StreamHandler;
 use Monolog\Logger;
 use React\EventLoop\LoopInterface;
 use React\Stream\WritableResourceStream;
-use SunValley\LoopUtil\FileLogger\Monolog\StreamHandler;
 
 class BrokerConnection
 {
@@ -43,8 +43,7 @@ class BrokerConnection
     }
 
     /**
-     * @param $output
-     *
+     * @param  $output
      * @return mixed
      */
     public function setOutput($output)
