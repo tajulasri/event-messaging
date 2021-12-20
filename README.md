@@ -1,4 +1,4 @@
-[![testing](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml/badge.svg)](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml)
+[![test](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml/badge.svg)](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml)
 
 # Very short description of the package
 
@@ -9,7 +9,9 @@ This is where your description should go. Try and limit it to a paragraph or two
 You can install the package via composer:
 
 ```bash
-composer require espresso-byte/event-messaging
+
+    composer require espresso-byte/event-messaging
+
 ```
 
 ## Usage
@@ -77,7 +79,9 @@ class OrderCreatedHandler implements EventInterface
 ### Testing
 
 ```bash
+
 composer test
+
 ```
 
 ### Changelog
