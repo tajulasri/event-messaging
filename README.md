@@ -1,4 +1,4 @@
-[![test](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml/badge.svg)](https://github.com/tajulasri/event-messaging/actions/workflows/testing.yml)
+[![build](https://github.com/tajulasri/event-messaging/actions/workflows/build.yml/badge.svg)](https://github.com/tajulasri/event-messaging/actions/workflows/build.yml)
 
 # Very short description of the package
 
